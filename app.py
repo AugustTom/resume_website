@@ -1,22 +1,51 @@
-import nltk
+import flask
+import pickle
+import json
+import numpy as np
+import random
+
 from nltk.stem import WordNetLemmatizer
 
 lemmatizer = WordNetLemmatizer()
-import pickle
-import numpy as np
 
+import nltk
 from keras.models import load_model
 
-model = load_model('chatbot_model.h5')
-import json
-import random
+app = flask.Flask(__name__, template_folder='templates')
 
+# Open pre-trained file
+model = load_model('model/chatbot_model.h5')
+words = pickle.load(open('model/words.pkl', 'rb'))
+classes = pickle.load(open('model/classes.pkl', 'rb'))
 intents = json.loads(open('data/intents.json').read())
-words = pickle.load(open('words.pkl', 'rb'))
-classes = pickle.load(open('classes.pkl', 'rb'))
 
-with open("data/resume.json") as resume:
-    about_dict = json.load(resume)
+about_dict = json.load(open("data/resume.json"))
+bot_messages = []
+user_messages = []
+
+
+@app.route('/', methods=['GET', 'POST'])
+def main():
+    if flask.request.method == 'GET':
+        return flask.render_template('main.html', user_messages=user_messages, bot_messages=bot_messages)
+    return "hello"
+
+
+@app.route("/send", methods=["POST"])
+def send():
+
+    message = flask.request.form['message']
+    global user_messages
+    user_messages.append(message)
+    response = chatbot_response(message)
+    global bot_messages
+    bot_messages.append(response)
+
+    return response
+
+
+if __name__ == '__main__':
+    app.run()
 
 
 def clean_up_sentence(sentence):
@@ -99,11 +128,3 @@ def list_experience():
         msg += "Date: " + job['date'] + "\n"
         msg += job['about'] + "\n"
     return msg
-
-
-print("welcome")
-msg = input('YOU: ')
-while msg != 'exit':
-    print("AI: ", chatbot_response(msg))
-    msg = input("YOU: ")
-exit()
