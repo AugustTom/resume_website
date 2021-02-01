@@ -37,7 +37,7 @@ def send():
 
 
 if __name__ == '__main__':
-    app.run(debug=False)
+    app.run()
 
 
 def clean_up_sentence(sentence):
