@@ -20,32 +20,24 @@ classes = pickle.load(open('model/classes.pkl', 'rb'))
 intents = json.loads(open('data/intents.json').read())
 
 about_dict = json.load(open("data/resume.json"))
-bot_messages = []
-user_messages = []
 
 
 @app.route('/', methods=['GET', 'POST'])
 def main():
     if flask.request.method == 'GET':
-        return flask.render_template('main.html', user_messages=user_messages, bot_messages=bot_messages)
+        return flask.render_template('main.html')
     return "hello"
 
 
 @app.route("/send", methods=["POST"])
 def send():
-
     message = flask.request.form['message']
-    global user_messages
-    user_messages.append(message)
     response = chatbot_response(message)
-    global bot_messages
-    bot_messages.append(response)
-
     return response
 
 
 if __name__ == '__main__':
-    app.run()
+    app.run(debug=False)
 
 
 def clean_up_sentence(sentence):

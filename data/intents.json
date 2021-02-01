@@ -1,7 +1,12 @@
 {"intents": [
         {"tag": "greeting",
-         "patterns": ["Hi there", "How are you", "Is anyone there?","Hey","Hola", "Hello", "Good day"],
-         "responses": ["Hello, thanks for asking", "Good to see you again", "Hi there, how can I help?"],
+         "patterns": ["Hi there", "Is anyone there?","Hey","Hola", "Hello", "Good day"],
+         "responses": ["Hello", "Hey!"],
+         "context": [""]
+        },
+        {"tag": "mood",
+         "patterns": ["How are you", "How's your day","How are you feeling","What's up"],
+         "responses": ["Good, thanks for asking", "Great! Thanks", "Amazing"],
          "context": [""]
         },
         {"tag": "goodbye",
@@ -20,8 +25,8 @@
          "context": [""]
         },
         {"tag": "options",
-         "patterns": ["How you could help me?", "What you can do?", "What help you provide?", "How you can be helpful?", "What support is offered"],
-         "responses": ["I can guide you through Adverse drug reaction list, Blood pressure tracking, Hospitals and Pharmacies", "Offering support for Adverse drug reaction, Blood pressure, Hospitals and Pharmacies"],
+         "patterns": [ "What you can do?", "What can you tell me?", "How you can be helpful?"],
+         "responses": ["I here to introduce myself. I'm Auguste Tomaseviciute. And here you can ask me more about my career, education and skills"],
          "context": [""]
         },
         {"tag": "education",
@@ -39,9 +44,9 @@
          "responses": ["Here are the ways you can contact me:"],
          "context": ["contact_info()"]
         },
-          {"tag": "experience",
+        {"tag": "experience",
          "patterns": ["What is your experience?", "Where have you worked before?", "What companies have you done internships with before? " ],
-         "responses": ["Here are the ways you can contact me:"],
+         "responses": [""],
          "context": ["list_experience()"]
         }
 

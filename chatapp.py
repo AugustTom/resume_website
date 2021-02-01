@@ -7,13 +7,13 @@ import numpy as np
 
 from keras.models import load_model
 
-model = load_model('chatbot_model.h5')
+model = load_model('model/chatbot_model.h5')
 import json
 import random
 
 intents = json.loads(open('data/intents.json').read())
-words = pickle.load(open('words.pkl', 'rb'))
-classes = pickle.load(open('classes.pkl', 'rb'))
+words = pickle.load(open('model/words.pkl', 'rb'))
+classes = pickle.load(open('model/classes.pkl', 'rb'))
 
 with open("data/resume.json") as resume:
     about_dict = json.load(resume)
