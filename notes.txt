@@ -1,0 +1,1 @@
+to rerun the tailwind css -> npx tailwindcss-cli@latest build ./src/tailwind.css -o ./dist/tailwind.css (https://tailwindcss.com/docs/installation)

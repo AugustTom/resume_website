@@ -7,9 +7,9 @@ module.exports = {
     },
   },
   variants: {
-    // Some useful comment
+    // scrollSnapType: ['responsive'],
   },
   plugins: [
-    // Some useful comment
-  ]
+      // require('tailwindcss-scroll-snap')
+  ],
 }
