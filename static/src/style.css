@@ -8,6 +8,12 @@
   .snap-start {
     scroll-snap-align: start;
   }
+  /*.scroll-snap-stop {*/
+  /*  scroll-snap-stop: always;*/
+  /*}*/
+  .scroll-snap-align-end{
+    scroll-snap-align: end;
+  }
   .overflow-y-scroll{
       overflow: scroll;
   }
