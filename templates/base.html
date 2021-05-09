@@ -23,7 +23,7 @@
 </style>
   <body class="bg-white font-spacemono leading-normal tracking-normal text-xl text-gray-800 ">
 
-  <main class="overflow-y-scroll snap max-h-screen container min-w-full max-h-screen container min-w-full leading-normal">
+  <div id="scroll-bar" class="overflow-y-scroll snap max-h-screen container min-w-full max-h-screen container min-w-full leading-normal">
      <nav id="header" class="fixed w-full z-10 top-0">
 
 		<div id="progress" class="h-1 z-20 top-0" style="background:linear-gradient(to right, #4dc0b5 var(--scroll), transparent 0);"></div>
@@ -93,11 +93,11 @@
 
 		</div>
 	</footer>
-  </main>
+  </div>
   <script>
 		/* Progress bar */
 		//Source: https://alligator.io/js/progress-bar-javascript-css-variables/
-		var h = document.documentElement,
+		var h = document.getElementById("scroll-bar"),
 			b = document.body,
 			st = 'scrollTop',
 			sh = 'scrollHeight',
@@ -107,27 +107,27 @@
 		var header = document.getElementById("header");
 		var navcontent = document.getElementById("nav-content");
 
-		document.addEventListener('scroll', function() {
-
+		{#document.addEventListener('scroll', function() {#}
+        document.getElementById("scroll-bar").addEventListener("scroll", function() {
 			/*Refresh scroll % width*/
 			scroll = (h[st] || b[st]) / ((h[sh] || b[sh]) - h.clientHeight) * 100;
 			progress.style.setProperty('--scroll', scroll + '%');
 
-			/*Apply classes for slide in bar*/
-			scrollpos = window.scrollY;
-
-			if (scrollpos > 10) {
-				header.classList.add("bg-white");
-				header.classList.add("shadow");
-				navcontent.classList.remove("bg-gray-100");
-				navcontent.classList.add("bg-white");
-			} else {
-				header.classList.remove("bg-white");
-				header.classList.remove("shadow");
-				navcontent.classList.remove("bg-white");
-				navcontent.classList.add("bg-gray-100");
-
-			}
+			{#/*Apply classes for slide in bar*/#}
+			{#scrollpos = window.scrollY;#}
+            {##}
+			{#if (scrollpos > 10) {#}
+			{#	header.classList.add("bg-white");#}
+			{#	header.classList.add("shadow");#}
+			{#	navcontent.classList.remove("bg-gray-100");#}
+			{#	navcontent.classList.add("bg-white");#}
+			{#} else {#}
+			{#	header.classList.remove("bg-white");#}
+			{#	header.classList.remove("shadow");#}
+			{#	navcontent.classList.remove("bg-white");#}
+			{#	navcontent.classList.add("bg-gray-100");#}
+            {##}
+			{#}#}
 
 		});
 
